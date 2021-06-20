@@ -33,8 +33,9 @@ const Appbar = (props) => {
                                 <Col><DropdownButton variant="light" title={(user.user.fullname).toUpperCase()}>
                                     <Dropdown.Item><Link to='/myProfile'>My profile</Link></Dropdown.Item>
                                     <Dropdown.Item href="#/action-2">Inbox</Dropdown.Item>
+                                    <Dropdown.Item><Link to='/enrolled/courses'>Enrolled courese</Link></Dropdown.Item>
                                     <Dropdown.Divider />
-                                    <Dropdown.Item onClick={()=>{dispatch(logout())}}>Logout</Dropdown.Item>
+                                    <Dropdown.Item onClick={()=>{dispatch(logout())}}><Link>Logout</Link></Dropdown.Item>
                                 </DropdownButton></Col>
                             </Row>
 

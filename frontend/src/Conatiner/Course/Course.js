@@ -11,6 +11,9 @@ const Course = (props) => {
     const slug = props.match.params.slug;
     const courses = useSelector(state => state.course.courses);
     const item = courses.find(x => x.slug === slug);
+    const registerCourses = useSelector(state => state.payment.payments);
+
+    const element = registerCourses.find(x => x.courseId === item._id);
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -59,9 +62,17 @@ const Course = (props) => {
                                 </Table>
                             </Col>
                             <Col md={6} style={{ marginTop: '50px' }}>
-                                <Button variant="danger" size="lg" block onClick={handleShow}>
-                                    Enrollment
-                                </Button>
+                                {
+                                    element ?
+                                        <Button variant="danger" size="lg" block onClick={handleShow} disabled>
+                                            Already enrolled
+                                        </Button>
+                                        :
+                                        <Button variant="danger" size="lg" block onClick={handleShow}>
+                                            Enrollment
+                                        </Button>
+                                }
+
 
                             </Col>
                         </Row>
@@ -88,7 +99,7 @@ const Course = (props) => {
                     <Row>
 
                         <Col>
-                            
+
                             <br />
                             <img
                                 src={process.env.PUBLIC_URL + "/bkash-system.png"}
@@ -98,7 +109,7 @@ const Course = (props) => {
                         </Col>
                     </Row>
                     <hr />
-                    <Row className="mt-3" style={{fontSize:'18px'}}>
+                    <Row className="mt-3" style={{ fontSize: '18px' }}>
 
                         <Col>
                             <p className="text-danger">If you have completed your payment,
@@ -111,8 +122,8 @@ const Course = (props) => {
                     <Row className="mt-3">
 
                         <Col>
-                        <label className="font-weight-bold">Payment transaction Id:</label>
-                            <Input 
+                            <label className="font-weight-bold">Payment transaction Id:</label>
+                            <Input
                                 type="text"
                                 placeholder="Transaction id"
 

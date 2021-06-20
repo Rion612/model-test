@@ -8,13 +8,14 @@ import {
 import SignIn from './Conatiner/SignIn/signin';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { getAllCourse, isUSerLoggedin } from './Actions';
+import { getAllCourse, getPaymentDetails, isUSerLoggedin } from './Actions';
 
 import ScrollToTop from './Components/ScrollToTop/ScrollToTop';
 import Profile from './Conatiner/Profile/Profile';
 import PrivateRoute from './Components/Hook/privateRoute'
 import Course from './Conatiner/Course/Course';
 import Register from './Conatiner/Register/Register';
+import RegisterCourse from './Conatiner/Registered Course/registerCourse';
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +29,10 @@ function App() {
   useEffect(()=>{
     dispatch(getAllCourse());
   },[]);
+
+  useEffect(()=>{
+    dispatch(getPaymentDetails());
+  },[]);
   return (
     <div>
       <div>
@@ -37,6 +42,7 @@ function App() {
           <Route path="/login" exact component={SignIn} />
           <Route path="/signup" exact component={Register} />
           <PrivateRoute path="/myProfile" exact component={Profile} />
+          <PrivateRoute path="/enrolled/courses" exact component={RegisterCourse} />
           <PrivateRoute path="/course/:slug" exact component={Course} />
         </Switch>
     </div>

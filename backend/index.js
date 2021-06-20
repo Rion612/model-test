@@ -33,10 +33,13 @@ app.use(
 );
 const userRoute = require('./Route/user.route');
 const courseRoute = require('./Route/course.route');
+const paymentRoute = require('./Route/payment.route');
+
 
 
 app.use("/api",userRoute);
 app.use("/api",courseRoute);
+app.use("/api",paymentRoute);
 
 app.listen(process.env.PORT, () => {
     console.log(
