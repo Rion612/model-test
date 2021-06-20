@@ -25,7 +25,7 @@ const CarouselSlider = (props) => {
                         {
                             user.authenticate ?
                                 <div></div>
-                                : <button className="btn btn-warning"><Link to='/signup' className="text-white" style={{ textDecoration: 'none' }} >Join Now</Link></button>
+                                : <Link to='/signup' className="text-white" style={{ textDecoration: 'none' }} ><button className="btn btn-warning text-white">Join Now</button></Link>
 
                         }
 
@@ -44,7 +44,7 @@ const CarouselSlider = (props) => {
                         {
                             user.authenticate ?
                                 <div></div>
-                                : <button className="btn btn-warning"><Link to='/signup' className="text-white" style={{ textDecoration: 'none' }} >Join Now</Link></button>
+                                : <Link to='/signup' className="text-white" style={{ textDecoration: 'none' }} ><button className="btn btn-warning text-white">Join Now</button></Link>
 
                         }
                     </Carousel.Caption>
@@ -62,7 +62,7 @@ const CarouselSlider = (props) => {
                         {
                             user.authenticate ?
                                 <div></div>
-                                : <button className="btn btn-warning"><Link to='/signup' className="text-white" style={{ textDecoration: 'none' }} >Join Now</Link></button>
+                                : <Link to='/signup' className="text-white" style={{ textDecoration: 'none' }} ><button className="btn btn-warning text-white">Join Now</button></Link>
 
                         }
                     </Carousel.Caption>
