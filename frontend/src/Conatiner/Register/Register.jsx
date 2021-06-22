@@ -85,7 +85,8 @@ const Register = () => {
         })
 
       }).catch((error) => {
-        console.log(error);
+        setMessage("Invalid information!");
+        setShow(true);
       })
   }
 
