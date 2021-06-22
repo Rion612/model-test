@@ -30,9 +30,20 @@ exports.createCourse = (req, res) => {
                 message: "Something wrong",
               });
             } else {
-              return res.status(200).json({
-                data,
-              });
+              Course.findOne({ _id: data._id })
+                .exec((error, c) => {
+                  if (error) {
+                    return res.status(400).json({
+                      message: "Something wrong",
+                    });
+                  }
+                  else {
+                    return res.status(200).json({
+                      course: c
+                    });
+                  }
+
+                })
             }
           });
         }
@@ -45,8 +56,8 @@ exports.createCourse = (req, res) => {
       const courseObj = {
         courseName: req.body.courseName,
         slug: slugify(req.body.courseName),
-        price : req.body.price,
-        description : req.body.description
+        price: req.body.price,
+        description: req.body.description
       };
       if (req.body.unit) {
         courseObj.unit = req.body.unit;
