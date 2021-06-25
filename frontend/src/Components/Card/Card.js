@@ -12,8 +12,8 @@ const useStyles = makeStyles({
     root: {
         maxWidth: 345,
     },
-    content:{
-        height:250,
+    content: {
+        height: 250,
     },
     media: {
         height: 140,
@@ -22,10 +22,10 @@ const useStyles = makeStyles({
         // In Chinese and Japanese the characters are usually larger,
         // so a smaller fontsize may be appropriate.
         fontSize: 18,
-        textAlign : 'center',
-        marginTop :'5px',
-        fontWeight:'bold'
-        
+        textAlign: 'center',
+        marginTop: '5px',
+        fontWeight: 'bold'
+
     }
 });
 
@@ -42,10 +42,10 @@ const CardComponent = (props) => {
                 <CardContent>
                     <Typography gutterBottom variant="h2" component="h2" className={classes.typography}>
                         {(props.name).toUpperCase()}
-            </Typography>
+                    </Typography>
                     <Typography variant="body2" color="textSecondary" component="p" className={classes.typography}>
                         {props.text}
-            </Typography>
+                    </Typography>
                 </CardContent>
             </CardActionArea>
         </Card>

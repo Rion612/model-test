@@ -74,3 +74,22 @@ exports.createModelTest = (req, res) => {
         }
     });
 };
+
+
+exports.getAllModelTest = (req,res)=>{
+    ModelTest.find({})
+    .exec((error,modeltests)=>{
+        if (error) {
+            return res.status(400).json({
+                error
+            });
+        }
+        else{
+            return res.status(200).json({
+                modeltests
+            });
+
+        }
+
+    })
+}

@@ -15,6 +15,7 @@ exports.paymentProcess = (req,res)=>{
             })
         }
         else{
+
             const paymentObj = {
                 courseId,
                 userId,
@@ -23,6 +24,10 @@ exports.paymentProcess = (req,res)=>{
                 status
         
             } = req.body;
+
+            if(req.body.unitId){
+                paymentObj.unitId = req.body.unitId
+            }
         
             const payment = new Payment(paymentObj);
         

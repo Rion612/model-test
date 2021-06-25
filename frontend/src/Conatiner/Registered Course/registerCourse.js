@@ -1,8 +1,7 @@
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Alert } from 'react-bootstrap';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import Layout from '../../Components/Layout/Layout';
-import { Link } from 'react-router-dom';
 import CardComponent from '../../Components/Card/Card';
 
 
@@ -10,7 +9,7 @@ const RegisterCourse = () => {
 
     const user = useSelector(state => state.user);
     const payment = useSelector(state => state.payment.payments);
-    const course = useSelector(state => state.course);
+    const course = useSelector(state => state.course.courses);
 
 
     const enrolledCourses = payment.filter(x => x.userId === user.user._id && x.status === "approved");
@@ -23,22 +22,33 @@ const RegisterCourse = () => {
                         {
                             enrolledCourses.length > 0 ?
                                 enrolledCourses.map((item, index) => {
-                                    const element = course.courses.find(x => x._id === item.courseId);
+                                    const element = course.find(x => x._id === item.courseId);
+                                    const unit = element.unit.find(y => y._id === item.unitId);
+
                                     return (
                                         <Col md={4} style={{ marginTop: '20px' }} key={index}>
-                                            <Link>
-                                                <CardComponent
-                                                    image={element.courseImage}
-                                                    name={element.courseName}
-                                                    title={element.courseName}
+                                            <CardComponent
+                                                image={element.courseImage}
+                                                name={element.courseName + "-" + unit?.unitName + " Unit"}
+                                                title={element.courseName}
 
-                                                />
-                                            </Link>
+
+                                            />
+
+                                            <button className="btn btn-primary mt-3 w-100" style={{ fontSize: '20px' }}>
+                                                View All Model-Tests
+                                            </button>
                                         </Col>
                                     )
                                 })
                                 :
-                                <p>There is no course registered yet.</p>
+                                <div style={{ width: '100%', textAlign: 'center', fontSize: '25px' }}>
+                                    <Alert variant="info">
+                                        There is no course registered yet.
+                                    </Alert>
+
+                                </div>
+
 
                         }
                     </Row>
