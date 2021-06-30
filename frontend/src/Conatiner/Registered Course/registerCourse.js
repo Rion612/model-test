@@ -3,6 +3,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import Layout from '../../Components/Layout/Layout';
 import CardComponent from '../../Components/Card/Card';
+import { Link } from 'react-router-dom'
 
 
 const RegisterCourse = () => {
@@ -13,6 +14,25 @@ const RegisterCourse = () => {
 
 
     const enrolledCourses = payment.filter(x => x.userId === user.user._id && x.status === "approved");
+
+    const regiCourse = () => {
+        const rCourses = [];
+        enrolledCourses.forEach(element => {
+            const c = course.find(x => x._id === element.courseId);
+            const unit = c?.unit.find(y => y._id === element.unitId);
+
+            rCourses.push({
+                courseId: c?._id,
+                courseName: c?.courseName,
+                slug: c.slug,
+                courseImage: c?.courseImage,
+                unitName: unit ? unit.unitName : ""
+            })
+
+        });
+        console.log(rCourses);
+        return rCourses;
+    }
     return (
         <Layout>
             <div className="mainDiv">
@@ -20,29 +40,29 @@ const RegisterCourse = () => {
                     <h1>Enrolled course list:</h1>
                     <Row>
                         {
-                            enrolledCourses.length > 0 ?
-                                enrolledCourses.map((item, index) => {
-                                    const element = course.find(x => x._id === item.courseId);
-                                    const unit = element.unit.find(y => y._id === item.unitId);
+                            regiCourse().length > 0 ?
+                                regiCourse().map((item, index) => {
 
                                     return (
                                         <Col md={4} style={{ marginTop: '20px' }} key={index}>
                                             <CardComponent
-                                                image={element.courseImage}
-                                                name={element.courseName + "-" + unit?.unitName + " Unit"}
-                                                title={element.courseName}
+                                                image={item.courseImage}
+                                                name={item.unitName ? (item.courseName + "-" + item.unitName + " unit") : item.courseName}
+                                                title={item.slug}
 
 
                                             />
+                                            <Link to={'/model-tests/' + item.slug}>
+                                                <button className="btn btn-primary mt-3 w-100" style={{ fontSize: '20px' }}>
+                                                    View All Model-Tests
+                                                </button>
+                                            </Link>
 
-                                            <button className="btn btn-primary mt-3 w-100" style={{ fontSize: '20px' }}>
-                                                View All Model-Tests
-                                            </button>
+
                                         </Col>
                                     )
                                 })
-                                :
-                                <div style={{ width: '100%', textAlign: 'center', fontSize: '25px' }}>
+                                : <div style={{ width: '100%', textAlign: 'center', fontSize: '25px' }}>
                                     <Alert variant="info">
                                         There is no course registered yet.
                                     </Alert>
