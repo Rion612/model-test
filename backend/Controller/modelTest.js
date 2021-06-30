@@ -1,5 +1,5 @@
 const ModelTest = require('../Model/ModelTest');
-
+const Course = require("../Model/Course");
 
 
 exports.createModelTest = (req, res) => {
@@ -91,4 +91,35 @@ exports.getAllModelTest = (req,res)=>{
         }
 
     })
+}
+exports.getOneModeltest = (req,res)=>{
+    const {slug,unitId} = req.params;
+
+    Course.findOne({slug : slug})
+    .exec((error,data)=>{
+        if(error){
+            return res.status(400).json({
+                error
+            });
+        }
+        else if(data){
+            ModelTest.findOne({courseId : data._id, unitId : unitId})
+            .exec((error,modeltest)=>{
+                if(error){
+                    return res.status(400).json({
+                        error
+                    });
+                }
+                else{
+                    return res.status(200).json({
+                        modeltest
+                    });
+                }
+
+            })
+
+        }
+    })
+
+    
 }
