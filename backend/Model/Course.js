@@ -30,6 +30,8 @@ const courseSchema = new mongoose.Schema(
         unitName: {
           type: String,
           trim: true,
+          required:true,
+          default:""
         },
       },
     ],

@@ -24,9 +24,10 @@ const RegisterCourse = () => {
             rCourses.push({
                 courseId: c?._id,
                 courseName: c?.courseName,
-                slug: c.slug,
+                slug: c?.slug,
                 courseImage: c?.courseImage,
-                unitName: unit ? unit.unitName : ""
+                unitName: unit ? unit.unitName : "",
+                unitId: element.unitId
             })
 
         });
@@ -52,11 +53,22 @@ const RegisterCourse = () => {
 
 
                                             />
-                                            <Link to={'/model-tests/' + item.slug}>
-                                                <button className="btn btn-primary mt-3 w-100" style={{ fontSize: '20px' }}>
-                                                    View All Model-Tests
-                                                </button>
-                                            </Link>
+                                            {
+                                                item.unitId ?
+                                                    <Link to={'/model-tests/' + item.slug + '/' + item.unitId}>
+                                                        <button className="btn btn-primary mt-3 w-100" style={{ fontSize: '20px' }}>
+                                                            View All Model-Tests
+                                                        </button>
+                                                    </Link>
+                                                    :
+                                                    <Link to={'/model-tests/' + item.slug }>
+                                                        <button className="btn btn-primary mt-3 w-100" style={{ fontSize: '20px' }}>
+                                                            View All Model-Tests
+                                                        </button>
+                                                    </Link>
+
+                                            }
+
 
 
                                         </Col>

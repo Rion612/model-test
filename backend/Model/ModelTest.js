@@ -7,15 +7,9 @@ const modelTestSchema = new mongoose.Schema(
       ref: "Course",
       required: true,
     },
-    status:{
-      type:String,
-      required: true
-
-    },
-    unitId:{
+    unitId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Course",
-      required: true,
 
     },
     modeltests: [
@@ -25,6 +19,11 @@ const modelTestSchema = new mongoose.Schema(
           trim: true,
           required: true,
         },
+        status: {
+          type: String,
+          required: true,
+          default : "unavailable"
+        }
       },
     ],
   },

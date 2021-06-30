@@ -55,7 +55,6 @@ exports.createModelTest = (req, res) => {
             const modelObj = {
                 courseId: req.body.courseId,
                 unitId :req.body.unitId,
-                status : req.body.status,
                 modeltests: req.body.modeltests,
             };
             const modeltest = new ModelTest(modelObj);
