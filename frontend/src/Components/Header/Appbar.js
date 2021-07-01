@@ -21,7 +21,7 @@ const Appbar = (props) => {
             <AppBar position="fixed">
                 <Toolbar>
                     <Typography variant="h6" className={classes.title}>
-                        <Button color="inherit"><Link to='/' className="text-white" style={{ textDecoration: 'none' }} >Online Model Test</Link></Button>
+                    <Link to='/' ><Button color="inherit" className="text-white" style={{ textDecoration: 'none' }}>Online Model Test</Button></Link>
                     </Typography>
                     {
                         user.authenticate ?

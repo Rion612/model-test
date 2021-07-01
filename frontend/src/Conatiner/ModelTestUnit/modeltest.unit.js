@@ -1,4 +1,4 @@
-import { Container, Card, Button,Row,Col } from 'react-bootstrap';
+import { Container, Card, Button, Row, Col,Badge } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
 import Layout from '../../Components/Layout/Layout';
 import axios from '../../helpers/axios';
@@ -25,19 +25,37 @@ const ModeltestUnit = (props) => {
                     <Row>
                         {modeltests?.modeltests?.map((item, index) => {
                             return (
-                                <Col key={index}>
+                                <Col key={index} md={4}>
                                     <Card>
                                         <Card.Header className="font-weight-bold">{(course?.courseName)?.toUpperCase()}</Card.Header>
                                         <Card.Body>
-                                            <Card.Text>{item.modelName.toUpperCase()}</Card.Text>
-                                            <Button variant="primary">Start Exam</Button>
+                                            {
+                                                item.status === "available" ?
+                                                    <div>
+                                                        <Card.Text>{item?.modelName.toUpperCase()}
+                                                        </Card.Text>
+                                                        <Button variant="primary">Start Exam</Button>
+
+                                                    </div>
+
+                                                    :
+                                                    <div>
+                                                        <Card.Text>{item?.modelName.toUpperCase()}
+                                                            {' '}<Badge variant="danger">Not available</Badge>
+                                                        </Card.Text>
+                                                        <Button variant="primary" disabled>Start Exam</Button>
+
+                                                    </div>
+
+
+                                            }
                                         </Card.Body>
                                     </Card>
                                 </Col>
 
                             )
                         })
-                    }
+                        }
                     </Row>
 
                 </Container>

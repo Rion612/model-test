@@ -155,7 +155,7 @@ const Profile = () => {
                       </Form.Row>
                       <Form.Row className="pt-3">
                         <Col>
-                        <Form.Label>Gender/,.:</Form.Label>
+                        <Form.Label>Gender:</Form.Label>
                           <Form.Control
                             value={user.user.gender}
                             readOnly

@@ -123,3 +123,34 @@ exports.getOneModeltest = (req,res)=>{
 
     
 }
+exports.getSingleModeltest = (req,res)=>{
+    const {slug} = req.params;
+
+    Course.findOne({slug : slug})
+    .exec((error,data)=>{
+        if(error){
+            return res.status(400).json({
+                error
+            });
+        }
+        else if(data){
+            ModelTest.findOne({courseId : data._id})
+            .exec((error,modeltest)=>{
+                if(error){
+                    return res.status(400).json({
+                        error
+                    });
+                }
+                else{
+                    return res.status(200).json({
+                        modeltest
+                    });
+                }
+
+            })
+
+        }
+    })
+
+    
+}
