@@ -3,6 +3,7 @@ import Layout from '../../Components/Layout/Layout';
 import { Container, Card, Row, Col, Button,Badge } from 'react-bootstrap'
 import { useSelector } from 'react-redux';
 import axios from '../../helpers/axios';
+import { Link } from 'react-router-dom';
 
 
 const ModelTest = (props) => {
@@ -33,9 +34,10 @@ const ModelTest = (props) => {
                                             {
                                                 item.status === "available" ?
                                                     <div>
-                                                        <Card.Text>{item.modelName.toUpperCase()}
+                                                        <Card.Text>{item?.modelName.toUpperCase()}
+                                                        {' '}<Badge variant="success">available</Badge>
                                                         </Card.Text>
-                                                        <Button variant="primary">Start Exam</Button>
+                                                        <Link to={'/model-tests/' + course.slug + '/'+ item._id + '/questions'}><Button variant="primary">Start Exam</Button></Link>
 
                                                     </div>
 

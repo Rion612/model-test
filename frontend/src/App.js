@@ -18,6 +18,7 @@ import Register from './Conatiner/Register/Register';
 import RegisterCourse from './Conatiner/Registered Course/registerCourse';
 import ModeltestUnit from './Conatiner/ModelTestUnit/modeltest.unit';
 import ModelTest from './Conatiner/ModelTest/modeltest';
+import Question from './Conatiner/Question/questions';
 
 function App() {
   const dispatch = useDispatch();
@@ -48,6 +49,7 @@ function App() {
           <PrivateRoute path="/course/:slug" exact component={Course} />
           <PrivateRoute path="/model-tests/:slug/:unitId" exact component={ModeltestUnit} />
           <PrivateRoute path="/model-tests/:slug" exact component={ModelTest} />
+          <PrivateRoute path="/model-tests/:slug/:modelId/questions" exact component={Question} />
         </Switch>
     </div>
     </div>
