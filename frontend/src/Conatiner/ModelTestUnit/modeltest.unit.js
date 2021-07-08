@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Layout from '../../Components/Layout/Layout';
 import axios from '../../helpers/axios';
 import { useSelector } from 'react-redux';
+import {Link }  from 'react-router-dom'
 
 const ModeltestUnit = (props) => {
     const [modeltests, setModeltests] = useState({});
@@ -34,7 +35,7 @@ const ModeltestUnit = (props) => {
                                                     <div>
                                                         <Card.Text>{item?.modelName.toUpperCase()}
                                                         </Card.Text>
-                                                        <Button variant="primary">Start Exam</Button>
+                                                        <Link to={'/model-tests/' + course.slug + '/'+ item._id + '/questions'}><Button variant="primary">Start Exam</Button></Link>
 
                                                     </div>
 

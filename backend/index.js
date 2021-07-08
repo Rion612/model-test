@@ -37,6 +37,7 @@ const paymentRoute = require('./Route/payment.route');
 
 const modeltestRoute = require('./Route/modeltest.route');
 const quesRoute =require('./Route/ques.route')
+const resultroute = require('./Route/result.route')
 
 
 
@@ -45,6 +46,7 @@ app.use("/api",courseRoute);
 app.use("/api",paymentRoute);
 app.use("/api",modeltestRoute);
 app.use("/api",quesRoute);
+app.use("/api",resultroute);
 
 app.listen(process.env.PORT, () => {
     console.log(
