@@ -108,21 +108,33 @@ const Question = (props) => {
     }
     const endExam = async () => {
 
-        let marks = 0
+        let marks = 0;
+        let wrongAns =0;
         correctAnswers.forEach((element, index) => {
             if (element === 1) {
                 marks = marks + 1;
+            }
+            else if(element === 0 || element === null)
+            {
+                wrongAns = wrongAns +1;
+
             }
         })
         const obj = {
             userId: userId,
             modelId: props.match.params.modelId,
             courseId: course?._id,
-            mark: marks
+            mark: marks,
+            totalQuestions : questions.questions.length,
+            attemptQuestions : marks + wrongAns,
+            correctAns : marks,
+            wrongAns : wrongAns,
+
         }
         if (modeltests?.unitId) {
             obj.unitId = modeltests?.unitId
         }
+        console.log(obj);
         setExamDetails(obj);
         try {
             const res = await axios.post("/create/results", obj);
@@ -130,7 +142,6 @@ const Question = (props) => {
         } catch (err) {
             setError("Something wrong!");
         }
-        
         setShow(false);
 
     }

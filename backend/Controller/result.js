@@ -30,7 +30,11 @@ exports.createResult = (req, res) => {
                 Result.findOneAndUpdate(searchObj, {
                     "$set": {
                         attempt: data.attempt + 1,
-                        mark: req.body.mark
+                        mark: req.body.mark,
+                        wrongAns: req.body.wrongAns,
+                        correctAns: req.body.correctAns,
+                        totalQuestions: req.body.totalQuestions,
+                        attemptQuestions: req.body.attemptQuestions
 
                     }
                 }
@@ -54,7 +58,11 @@ exports.createResult = (req, res) => {
                     userId: req.body.userId,
                     courseId: req.body.courseId,
                     modelId: req.body.modelId,
-                    mark: req.body.mark
+                    mark: req.body.mark,
+                    wrongAns: req.body.wrongAns,
+                    correctAns: req.body.correctAns,
+                    totalQuestions: req.body.totalQuestions,
+                    attemptQuestions: req.body.attemptQuestions
                 }
                 if (req.body.unitId) {
                     obj.unitId = req.body.unitId
@@ -77,35 +85,35 @@ exports.createResult = (req, res) => {
             }
         })
 }
-exports.getAllResults = (req,res)=>{
-    const {userId} = req.params;
-    Result.findOne({userId : userId})
-    .exec((error,result)=>{
-        if(error){
-            return res.status(400).json({
-                message:"Something is wrong!"
-            })
-        }
-        else{
-            return res.status(200).json({
-                result
-            })
-        }
-    })
+exports.getAllResults = (req, res) => {
+    const { userId } = req.params;
+    Result.find({ userId: userId })
+        .exec((error, result) => {
+            if (error) {
+                return res.status(400).json({
+                    message: "Something is wrong!"
+                })
+            }
+            else {
+                return res.status(200).json({
+                    result
+                })
+            }
+        })
 }
-exports.getOneResult = (req,res)=>{
-    const {id} = req.params;
-    Result.findOne({modelId : id})
-    .exec((error,result)=>{
-        if(error){
-            return res.status(400).json({
-                message:"Something is wrong!"
-            })
-        }
-        else{
-            return res.status(200).json({
-                result
-            })
-        }
-    })
+exports.getOneResult = (req, res) => {
+    const { id } = req.params;
+    Result.findOne({ modelId: id })
+        .exec((error, result) => {
+            if (error) {
+                return res.status(400).json({
+                    message: "Something is wrong!"
+                })
+            }
+            else {
+                return res.status(200).json({
+                    result
+                })
+            }
+        })
 }

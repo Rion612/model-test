@@ -52,7 +52,7 @@ function App() {
           <PrivateRoute path="/model-tests/:slug/:unitId" exact component={ModeltestUnit} />
           <PrivateRoute path="/model-tests/:slug" exact component={ModelTest} />
           <PrivateRoute path="/model-tests/:slug/:modelId/questions" exact component={Question} />
-          <PrivateRoute path="/all/model-tests/result" exact component={Result} />
+          <PrivateRoute path="/all/model-tests/result/:userId" exact component={Result} />
           <PrivateRoute path="/model-test/exam/summary" exact component={Summary} />
         </Switch>
     </div>

@@ -29,7 +29,24 @@ const resultSchema = new mongoose.Schema(
         attempt:{
             type:Number,
             default:1
-        }
+        },
+        totalQuestions :{
+            type:Number,
+            required:true
+        },
+        attemptQuestions :{
+            type:Number,
+            required:true
+        },
+        correctAns :{
+            type:Number,
+            required:true
+        },
+        wrongAns :{
+            type:Number,
+            required:true
+        },
+        
     },
     { timestamps: true }
 );
