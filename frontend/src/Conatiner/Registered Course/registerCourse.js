@@ -48,13 +48,13 @@ const RegisterCourse = () => {
                                         <Col md={4} style={{ marginTop: '20px' }} key={index}>
                                             <CardComponent
                                                 image={item.courseImage}
-                                                name={item.unitName ? (item.courseName + "-" + item.unitName + " unit") : item.courseName}
+                                                name={item?.unitName ? (item?.courseName + "-" + item?.unitName + " unit") : item?.courseName}
                                                 title={item.slug}
 
 
                                             />
                                             {
-                                                item.unitId ?
+                                                item?.unitId ?
                                                     <Link to={'/model-tests/' + item.slug + '/' + item.unitId}>
                                                         <button className="btn btn-primary mt-3 w-100" style={{ fontSize: '20px' }}>
                                                             View All Model-Tests

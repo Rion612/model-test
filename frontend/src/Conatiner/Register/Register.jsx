@@ -43,6 +43,11 @@ const useStyles = makeStyles(theme => ({
 const Register = () => {
   const user = useSelector(state => state.user);
   const [show, setShow] = useState(false);
+  const [fnmessage, setFnmessage] = useState("");
+  const [lnmessage, setLnmessage] = useState("");
+  const [cmessage, setCmessage] = useState("");
+  const [pmessage, setPmessage] = useState("");
+  const [emessage, setEmessage] = useState("");
 
   const [message, setMessage] = useState("");
 
@@ -69,25 +74,72 @@ const Register = () => {
       institutionName: "",
       userImage: ""
     }
-    console.log(signupInfo);
+    if (info.fname === "") {
+      setFnmessage("Firstname is required!");
+      setLnmessage("")
+      setCmessage("")
+      setPmessage("")
+      setEmessage("")
+    }
+    else if (info.lname === "") {
+      setFnmessage("");
+      setLnmessage("Lastname is required!")
+      setCmessage("")
+      setPmessage("")
+      setEmessage("")
+    }
+    else if (info.contact === "") {
+      setFnmessage("");
+      setLnmessage("")
+      setCmessage("Contact is required!")
+      setPmessage("")
+      setEmessage("")
+    }
+    else if (info.email === "") {
+      setFnmessage("");
+      setLnmessage("")
+      setCmessage("")
+      setPmessage("")
+      setEmessage("Email is required!")
+    }
+    
+    else if (info.password === "") {
+      setFnmessage("");
+      setLnmessage("")
+      setCmessage("")
+      setPmessage("Password is required!")
+      setEmessage("")
+    }
+    else if ((info.password.anchor).length < 6) {
+      setFnmessage("");
+      setLnmessage("")
+      setCmessage("")
+      setPmessage("Password length should be greater than 6 character!")
+      setEmessage("")
+    }
+    else {
+      await axios.post('/user/signup', signupInfo)
+        .then((res) => {
+          console.log(res);
+          setMessage("Registration successful ! Please go to login and do login.");
+          setShow(true);
+          setInfo({
+            fname: '',
+            lname: '',
+            contact: '',
+            email: '',
+            password: ''
+          })
 
-    await axios.post('/user/signup', signupInfo)
-      .then((res) => {
-        console.log(res);
-        setMessage("Registration successful ! Please go to login and do login.");
-        setShow(true);
-        setInfo({
-          fname: '',
-          lname: '',
-          contact: '',
-          email: '',
-          password: ''
+        }).catch((error) => {
+          setMessage("Invalid information!");
+          setShow(true);
         })
 
-      }).catch((error) => {
-        setMessage("Invalid information!");
-        setShow(true);
-      })
+    }
+
+
+
   }
 
   return (
@@ -131,6 +183,7 @@ const Register = () => {
                     })
                   }
                 />
+                <span className="text-danger">{fnmessage ? fnmessage : null}</span>
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -148,6 +201,7 @@ const Register = () => {
                     })
                   }
                 />
+                 <span className="text-danger">{lnmessage ? lnmessage : null}</span>
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -165,6 +219,7 @@ const Register = () => {
                     })
                   }
                 />
+                <span className="text-danger">{cmessage ? cmessage : null}</span>
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -183,6 +238,7 @@ const Register = () => {
                     })
                   }
                 />
+                <span className="text-danger">{emessage ? emessage : null}</span>
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -201,6 +257,7 @@ const Register = () => {
                     })
                   }
                 />
+                <span className="text-danger">{pmessage ? pmessage : null}</span>
               </Grid>
             </Grid>
             <Button

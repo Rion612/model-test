@@ -9,7 +9,7 @@ const ModeltestUnit = (props) => {
     const [modeltests, setModeltests] = useState({});
     const [error, setError] = useState("");
     const courses = useSelector(state => state.course.courses);
-    const course = courses.find(x => x._id === modeltests.courseId);
+    const course = courses.find(x => x._id === modeltests?.courseId);
     useEffect(async () => {
         try {
             const res = await axios.get(`/get/model-tests/${props.match.params.slug}/${props.match.params.unitId}`);
@@ -34,6 +34,7 @@ const ModeltestUnit = (props) => {
                                                 item.status === "available" ?
                                                     <div>
                                                         <Card.Text>{item?.modelName.toUpperCase()}
+                                                        {' '}<Badge variant="success">available</Badge>
                                                         </Card.Text>
                                                         <Link to={'/model-tests/' + course.slug + '/'+ item._id + '/questions'}><Button variant="primary">Start Exam</Button></Link>
 

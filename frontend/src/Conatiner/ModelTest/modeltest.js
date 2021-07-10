@@ -10,7 +10,7 @@ const ModelTest = (props) => {
     const [modeltests, setModeltests] = useState({});
     const [error, setError] = useState("");
     const courses = useSelector(state => state.course.courses);
-    const course = courses.find(x => x._id === modeltests.courseId);
+    const course = courses.find(x => x._id === modeltests?.courseId);
     useEffect(async () => {
         try {
             const res = await axios.get(`/get/model-tests/${props.match.params.slug}`);
