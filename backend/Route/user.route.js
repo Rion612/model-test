@@ -1,5 +1,5 @@
 const express = require('express');
-const { signUp, userSignin, userUpdate } = require('../Controller/User');
+const { signUp, userSignin, userUpdate, getAllUser } = require('../Controller/User');
 
 const router = express.Router();
 
@@ -24,5 +24,7 @@ router.post('/user/signup',upload.single('userImage'),signUp);
 router.post('/user/signin',userSignin);
 
 router.post('/user/update/profile',upload.single('userImage'),userUpdate);
+
+router.get('/get/all/user/info', getAllUser);
 
 module.exports = router;

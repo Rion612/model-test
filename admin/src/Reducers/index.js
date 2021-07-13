@@ -1,17 +1,15 @@
 import { combineReducers } from "redux";
-import productReducers from "./product.reducers";
 import categoryReducers from "./category.reducers";
 import courseReducers from './course.reducers';
-import showroomReducers from './showroom.reducers';
-import helmetReducers from './helmet.reducers'
+import paymentReducers from './payment.reducers';
+import userReducers from './user.reducers'
 import helmetbrandReducers from './helemt.brand.reducers'
 
 const rootReducer = combineReducers({
-  product: productReducers,
   category: categoryReducers,
   course : courseReducers,
-  showroom : showroomReducers,
-  helmets : helmetReducers,
+  payment : paymentReducers,
+  user : userReducers,
   helmetBrands : helmetbrandReducers
 
 });

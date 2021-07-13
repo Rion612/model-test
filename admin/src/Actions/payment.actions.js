@@ -1,26 +1,26 @@
 import axios from '../helpers/axios';
-import { showroomConstants } from './constants';
+import { paymentConstants } from './constants';
 
-export const getShowroom = () => {
+export const getPayment = () => {
     return async dispatch => {
-        dispatch({ type: showroomConstants.GET_SHOWROOM_REQUEST });
+        dispatch({ type: paymentConstants.GET_PAYMENT_REQUEST });
 
-        const res = await axios.get('/get/all/showrooms');
+        const res = await axios.get('/get/payment/details');
 
         if (res.status === 200) {
 
             dispatch({
-                type: showroomConstants.GET_SHOWROOM_SUCCESS,
+                type: paymentConstants.GET_PAYMENT_SUCCESS,
                 payload: {
-                    showrooms: res.data._showrooms
+                    payments: res.data.paymentDetails
                 }
             })
         }
         else {
-            dispatchEvent({
-                type: showroomConstants.GET_SHOWROOM_FAILURE,
+            dispatch({
+                type: paymentConstants.GET_PAYMENT_FAILURE,
                 payload: {
-                    message: "Something wrong"
+                    message: "Something is wrong!"
 
                 }
 
@@ -28,6 +28,7 @@ export const getShowroom = () => {
         }
     }
 }
+/*
 export const createShowroom = (form) => {
     return async dispatch => {
         dispatch({ type: showroomConstants.ADD_SHOWROOM_REQUEST });
@@ -103,27 +104,26 @@ export const deleteShowroom = (item) => {
 
             });
     }
-}
-export const editShowroom = (item) => {
+}*/
+export const makeApproved = (item) => {
     return async dispatch => {
-        dispatch({ type: showroomConstants.EDIT_SHOWROOM_REQUEST });
+        dispatch({ type: paymentConstants.EDIT_PAYMENT_REQUEST });
 
 
-        await axios.post('/edit/showroom', item)
+        await axios.post('/user/apyment/approve', item)
             .then((res) => {
                 if (res.status === 200) {
-                    const showroom = res.data.showroom;
-                    console.log(showroom);
+                    const payment = res.data.data;
                     dispatch({
-                        type: showroomConstants.EDIT_SHOWROOM_SUCCESS,
+                        type: paymentConstants.EDIT_PAYMENT_SUCCESS,
                         payload: {
-                            showroom
+                            payment
                         }
                     })
                 }
                 else {
                     dispatch({
-                        type: showroomConstants.EDIT_SHOWROOM_FAILURE,
+                        type: paymentConstants.EDIT_PAYMENT_FAILURE,
                         payload: {
                             message: "Something happend wrong!"
                         }
@@ -133,9 +133,8 @@ export const editShowroom = (item) => {
             })
             .catch((error) => {
                 dispatch({
-                    type: showroomConstants.EDIT_SHOWROOM_FAILURE,
+                    type: paymentConstants.EDIT_PAYMENT_FAILURE,
                     payload: {
-                        error,
                         message: "Something happend wrong!"
                     }
                 })

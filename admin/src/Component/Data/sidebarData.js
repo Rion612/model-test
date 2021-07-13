@@ -3,7 +3,7 @@ import React from 'react'
 import { GiGraduateCap } from 'react-icons/gi';
 import { AiOutlineDashboard } from "react-icons/ai";
 import { BsQuestionOctagonFill } from 'react-icons/bs';
-import { FaCcMastercard } from 'react-icons/fa';
+import { FaCcMastercard,FaUserAlt } from 'react-icons/fa';
 
 export const sidebarData = [
     {
@@ -29,7 +29,14 @@ export const sidebarData = [
         path :'/user/payments',
         icon :<FaCcMastercard/>,
         cName :'nav-text'
-    }
+    },
+    {
+        title :'Users',
+        path :'/all/users',
+        icon :<FaUserAlt/>,
+        cName :'nav-text'
+    },
+
 
 ]
     

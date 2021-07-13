@@ -1,29 +1,29 @@
-import { helmetConstants } from "../Actions/constants"
+import { userConstants } from "../Actions/constants"
 
 const initState={
     error :"",
     loading : false,
-    helmets :[]
+    users :[]
 }
 
 
 
 export default (state = initState,action)=>{
     switch(action.type){
-        case helmetConstants.GET_HELMET_REQUEST:
+        case userConstants.GET_ALL_USER_REQUEST:
             state={
                 ...initState,
                 loadingL:true
             }
             break;
-        case helmetConstants.GET_HELMET_SUCCESS:
+        case userConstants.GET_ALL_USER_SUCCESS:
             state={
                 ...state,
                 loading:false,
-                helmets : action.payload.helmets
+                users : action.payload.users
             }
             break;
-        case helmetConstants.GET_HELMET_FAILURE:
+        case userConstants.GET_ALL_USER_FAILURE:
             state={
                 ...state,
                 error : action.payload.message

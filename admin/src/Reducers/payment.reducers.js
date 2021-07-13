@@ -1,10 +1,28 @@
-import { showroomConstants } from "../Actions/constants"
+import { paymentConstants } from "../Actions/constants"
 
 const initialState = {
-    showrooms: [],
+    payment: [],
     loading: false,
     error: ""
 }
+
+
+const makeUpadted = (payments, data) => {
+    const s = payments.filter(x => x._id !== data._id);
+    s.push({
+        _id: data._id,
+        courseId: data.courseId,
+        userId: data.userId,
+        amount: data.amount,
+        status: data.status,
+        transactionId: data.transactionId,
+        createdAt: data.createdAt,
+        updatedAt: data.updatedAt,
+    })
+    return s;
+
+}
+/*
 const makeUpadted = (showrooms, showroom) => {
     showrooms.push({
         _id: showroom._id,
@@ -24,44 +42,29 @@ const makeUpadted2 = (showrooms, id) => {
     return s;
 
 }
-const makeUpadted3 = (showrooms, showroom) => {
-    const s = showrooms.filter(x => x._id !== showroom._id);
-    s.push({
-        _id: showroom._id,
-        name: showroom.name,
-        address: showroom.address,
-        district: showroom.district,
-        thana: showroom.thana,
-        cellNo: showroom.cellNo,
-        createdAt: showroom.createdAt,
-        updatedAt: showroom.updatedAt,
-        brand: showroom.brand
-    })
-    return s;
-
-}
-
+*/
 export default (state = initialState, action) => {
     switch (action.type) {
-        case showroomConstants.GET_SHOWROOM_REQUEST:
+        case paymentConstants.GET_PAYMENT_REQUEST:
             state = {
                 ...initialState,
                 loading: true
             }
             break;
-        case showroomConstants.GET_SHOWROOM_SUCCESS:
+        case paymentConstants.GET_PAYMENT_SUCCESS:
             state = {
                 ...state,
                 loading: false,
-                showrooms: action.payload.showrooms
+                payment: action.payload.payments
             }
             break;
-        case showroomConstants.GET_SHOWROOM_FAILURE:
+        case paymentConstants.GET_PAYMENT_FAILURE:
             state = {
                 ...state,
                 error: action.payload.message
             }
             break;
+            /*
         case showroomConstants.ADD_SHOWROOM_REQUEST:
             state = {
                 ...state,
@@ -107,23 +110,23 @@ export default (state = initialState, action) => {
                 message: action.payload.message
 
             }
-            break;
-        case showroomConstants.EDIT_SHOWROOM_REQUEST:
+            break;*/
+        case paymentConstants.EDIT_PAYMENT_REQUEST:
             state = {
                 ...state,
                 loading: true
             }
             break;
-        case showroomConstants.EDIT_SHOWROOM_SUCCESS:
-            const showroom = action.payload.showroom;
-            const upgradeShowroom3 = makeUpadted3(state.showrooms,showroom);
+        case paymentConstants.EDIT_PAYMENT_SUCCESS:
+            const data = action.payload.payment;
+            const upgradePayment = makeUpadted(state.payment,data);
             state = {
                 ...state,
                 loading: false,
-                showrooms: upgradeShowroom3
+                payment: upgradePayment
             }
             break;
-        case showroomConstants.EDIT_SHOWROOM_FAILURE:
+        case paymentConstants.EDIT_PAYMENT_FAILURE:
             state = {
                 ...state,
                 error: action.payload.message

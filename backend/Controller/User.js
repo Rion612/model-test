@@ -152,3 +152,21 @@ exports.userUpdate = (req, res) => {
 
         })
 }
+
+exports.getAllUser = (req,res)=>{
+    User.find({})
+    .select("_id firstname lastname email contact gender institutionName userImage")
+    .exec((error,users)=>{
+        if(users){
+            return res.status(200).json({
+                users
+            });
+        }
+        else {
+            return res.status(400).json({
+                error
+            });
+
+        }
+    })
+}

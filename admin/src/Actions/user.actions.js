@@ -1,28 +1,28 @@
 import axios from "../helpers/axios";
-import { helmetConstants } from "./constants"
+import { userConstants } from "./constants";
 
-export const getAllhelmet = ()=>{
+export const getAllUser = ()=>{
     return async dispatch=>{
 
 
-        dispatch({type : helmetConstants.GET_HELMET_REQUEST});
+        dispatch({type : userConstants.GET_ALL_USER_REQUEST});
 
-        await axios.get('/get/all/helmets')
+        await axios.get('/get/all/user/info')
             .then((res) => {
                 if (res.status === 200) {
 
                     dispatch({
-                        type:helmetConstants.GET_HELMET_SUCCESS,
+                        type:userConstants.GET_ALL_USER_SUCCESS,
                         payload:{
-                            helmets:res.data.helmets
+                            users:res.data.users
                         }
                     })
                 }
                 else {
                     dispatch({
-                        type:helmetConstants.GET_HELMET_FAILURE,
+                        type:userConstants.GET_ALL_USER_FAILURE,
                         payload:{
-                            message:res.data.message
+                            message:"Something is wrong!"
                         }
                     })
                 }
@@ -30,9 +30,8 @@ export const getAllhelmet = ()=>{
             })
             .catch((error) => {
                 dispatch({
-                    type:helmetConstants.GET_HELMET_FAILURE,
+                    type:userConstants.GET_ALL_USER_FAILURE,
                     payload:{
-                        error,
                         message :"Something happend wrong!"
                     }
                 })
