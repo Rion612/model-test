@@ -5,7 +5,11 @@ const initState={
     loading : false,
     users :[]
 }
+const makeDelete = (users, id) => {
+    const u = users.filter(x => x._id !== id);
+    return u;
 
+}
 
 
 export default (state = initState,action)=>{
@@ -13,7 +17,7 @@ export default (state = initState,action)=>{
         case userConstants.GET_ALL_USER_REQUEST:
             state={
                 ...initState,
-                loadingL:true
+                loading:true
             }
             break;
         case userConstants.GET_ALL_USER_SUCCESS:
@@ -29,6 +33,29 @@ export default (state = initState,action)=>{
                 error : action.payload.message
             }
             break;
+            case userConstants.DEL_USER_REQUEST:
+                state = {
+                    ...state,
+                    loading: true
+                }
+                break;
+            case userConstants.DEL_USER_SUCCESS:
+                const id = action.payload.id;
+                const upgradeUser = makeDelete(state.users, id);
+                state = {
+                    ...state,
+                    users: upgradeUser,
+                    loading: false
+    
+                }
+                break;
+            case userConstants.DEL_USER_FAILURE:
+                state = {
+                    ...state,
+                    message: action.payload.message
+    
+                }
+                break;
     }
     return state;
 

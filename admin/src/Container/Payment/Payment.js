@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Spinner, Table, Modal, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux';
-import { getPayment, makeApproved } from '../../Actions';
+import { deletePayment, getPayment, makeApproved } from '../../Actions';
 import { RiDeleteBin5Line } from 'react-icons/ri'
 import { BiEdit } from 'react-icons/bi'
 import './payment.css'
@@ -36,6 +36,7 @@ const Payment = () => {
         setShow(false);
     };
     const manageClose = () => {
+        dispatch(deletePayment(item))
         setView(false);
     };
     const manageView = (item) => {

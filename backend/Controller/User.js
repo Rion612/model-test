@@ -170,3 +170,20 @@ exports.getAllUser = (req,res)=>{
         }
     })
 }
+exports.deleteUser = (req, res) => {
+    User.findOneAndDelete({ _id: req.body._id })
+        .exec((error, user) => {
+            if (error) {
+                return res.status(400).json({
+                    message: "Something Wrong"
+                });
+            }
+            else if (user) {
+
+                return res.status(200).json(
+                    { message: "Item is deleted successfully" }
+                );
+            }
+
+        })
+}

@@ -28,55 +28,16 @@ export const getPayment = () => {
         }
     }
 }
-/*
-export const createShowroom = (form) => {
+export const deletePayment= (item) => {
     return async dispatch => {
-        dispatch({ type: showroomConstants.ADD_SHOWROOM_REQUEST });
+        dispatch({ type: paymentConstants.DEL_PAYMENT_REQUEST });
 
-
-        await axios.post('/create/showroom', form)
-            .then((res) => {
-                if (res.status === 201) {
-
-                    dispatch({
-                        type: showroomConstants.ADD_SHOWROOM_SUCCESS,
-                        payload: {
-                            showrooms: res.data.showrooms
-                        }
-                    })
-                }
-                else {
-                    dispatch({
-                        type: showroomConstants.ADD_SHOWROOM_FAILURE,
-                        payload: {
-                            message: res.data.message
-                        }
-                    })
-                }
-
-            })
-            .catch((error) => {
-                dispatch({
-                    type: showroomConstants.ADD_SHOWROOM_FAILURE,
-                    payload: {
-                        error,
-                        message: "Something happend wrong!"
-                    }
-                })
-
-            });
-    }
-}
-export const deleteShowroom = (item) => {
-    return async dispatch => {
-        dispatch({ type: showroomConstants.DEL_SHOWROOM_REQUEST });
-
-        await axios.post('/delete/showroom', item)
+        await axios.post('/user/apyment/delete', item)
             .then((res) => {
                 if (res.status === 200) {
 
                     dispatch({
-                        type: showroomConstants.DEL_SHOWROOM_SUCCESS,
+                        type: paymentConstants.DEL_PAYMENT_SUCCESS,
                         payload: {
                             message: res.data.message,
                             id: item._id
@@ -85,7 +46,7 @@ export const deleteShowroom = (item) => {
                 }
                 else {
                     dispatch({
-                        type: showroomConstants.DEL_SHOWROOM_FAILURE,
+                        type: paymentConstants.DEL_PAYMENT_FAILURE,
                         payload: {
                             message: "Something happend wrong!"
                         }
@@ -95,7 +56,7 @@ export const deleteShowroom = (item) => {
             })
             .catch((error) => {
                 dispatch({
-                    type: showroomConstants.DEL_SHOWROOM_FAILURE,
+                    type: paymentConstants.DEL_PAYMENT_FAILURE,
                     payload: {
                         error,
                         message: "Something happend wrong!"
@@ -104,7 +65,7 @@ export const deleteShowroom = (item) => {
 
             });
     }
-}*/
+}
 export const makeApproved = (item) => {
     return async dispatch => {
         dispatch({ type: paymentConstants.EDIT_PAYMENT_REQUEST });

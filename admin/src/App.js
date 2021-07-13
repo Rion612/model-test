@@ -12,6 +12,7 @@ import { useDispatch } from 'react-redux';
 import  Dashboard  from './Container/Dashboard/Dashboard'
 import Course from "./Container/Course/Course";
 import Payment from "./Container/Payment/Payment";
+import User from "./Container/User/User";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -28,6 +29,7 @@ function App() {
           <Route path="/" exact component={Dashboard} />
           <Route path="/user/payments" exact component={Payment} />
           <Route path="/courses" exact component={Course} />
+          <Route path="/all/users" exact component={User} />
         </Switch>
       </Router>
     </div>
