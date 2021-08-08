@@ -5,7 +5,7 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import { getAllUser, getCourses } from "./Actions";
+import { getAllModelTest, getAllUser, getCourses } from "./Actions";
 import './App.css';
 import Header from './Component/Header/Header';
 import { useDispatch } from 'react-redux';
@@ -14,6 +14,7 @@ import Course from "./Container/Course/Course";
 import Payment from "./Container/Payment/Payment";
 import User from "./Container/User/User";
 import { getPayment } from './Actions';
+import Question from "./Container/Questions/Question";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -26,6 +27,9 @@ function App() {
   useEffect(() => {
     dispatch(getPayment())
 }, [])
+useEffect(() => {
+  dispatch(getAllModelTest())
+}, [])
   return (
     <div className="App">
       <Router>
@@ -35,6 +39,7 @@ function App() {
           <Route path="/user/payments" exact component={Payment} />
           <Route path="/courses" exact component={Course} />
           <Route path="/all/users" exact component={User} />
+          <Route path="/modeltest/questions" exact component={Question} />
         </Switch>
       </Router>
     </div>
