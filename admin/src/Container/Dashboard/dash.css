@@ -1,0 +1,30 @@
+.dashboard{
+    margin-top: 80px;
+    height: 100vh;
+}
+.flex-container {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .flex-container > div {
+    width: 300px;
+    height: 200px;
+    background-color: #0667f8;
+    margin: 10px;
+    padding: 20px;
+    font-size: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.9);
+    transition: 0.3s;
+    color: #fff;
+  }
+  .flex-container > div:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  @media (max-width: 600px) {
+    .flex-container {
+      flex-direction: column;
+    }
+  }

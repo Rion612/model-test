@@ -13,6 +13,7 @@ import  Dashboard  from './Container/Dashboard/Dashboard'
 import Course from "./Container/Course/Course";
 import Payment from "./Container/Payment/Payment";
 import User from "./Container/User/User";
+import { getPayment } from './Actions';
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -21,6 +22,10 @@ function App() {
   useEffect(() => {
     dispatch(getAllUser())
   }, [])
+
+  useEffect(() => {
+    dispatch(getPayment())
+}, [])
   return (
     <div className="App">
       <Router>

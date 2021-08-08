@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Spinner, Table, Modal, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux';
-import { deletePayment, getPayment, makeApproved } from '../../Actions';
+import { deletePayment, makeApproved } from '../../Actions';
 import { RiDeleteBin5Line } from 'react-icons/ri'
 import { BiEdit } from 'react-icons/bi'
 import './payment.css'
@@ -12,10 +12,6 @@ const Payment = () => {
     const [searcitem, setsearcitem] = useState("");
     const [checked, setChecked] = useState(false);
     const [item, setItem] = useState({})
-    useEffect(() => {
-        dispatch(getPayment())
-    }, [])
-
     const payment = useSelector(state => state.payment);
     function capitalize(string) {
         return string?.charAt(0).toUpperCase() + string?.slice(1);
@@ -102,7 +98,7 @@ const Payment = () => {
                                         else if (val.transactionId.toLowerCase().includes(searcitem.toLowerCase())) {
                                             return val;
                                         }
-                                    }).map((item, index) => {
+                                    }).sort().reverse().map((item, index) => {
                                         const user = users?.users.find(x => x._id === item.userId)
                                         const course = courses?.courses.find(z => z._id === item.courseId)
                                         return (
@@ -118,6 +114,7 @@ const Payment = () => {
                                                             type="switch"
                                                             id={index}
                                                             checked={item.status === "approved" ? true : false}
+                                                            readOnly
                                                         />
                                                     </Form>
 

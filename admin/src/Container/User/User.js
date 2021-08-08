@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteUser, getAllUser } from '../../Actions';
+import { deleteUser } from '../../Actions';
 import { Spinner, Table,Modal,Button } from 'react-bootstrap'
 
 import { RiDeleteBin5Line } from 'react-icons/ri'
@@ -8,9 +8,6 @@ const User = () => {
     const dispatch = useDispatch();
     const [item, setItem] = useState({});
     const [show, setShow] = useState(false);
-    useEffect(() => {
-        dispatch(getAllUser());
-    }, [])
 
 
     const user = useSelector(state => state.user);
