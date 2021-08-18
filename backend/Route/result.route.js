@@ -6,6 +6,6 @@ const router = express.Router();
 router.post("/create/results", createResult);
 router.get("/get/all/results/:userId",getAllResults);
 
-router.get("/result/summary/:id",getOneResult);
+router.get("/result/summary/:id/:userId",getOneResult);
 
 module.exports = router;

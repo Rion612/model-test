@@ -110,7 +110,7 @@ const Register = () => {
       setPmessage("Password is required!")
       setEmessage("")
     }
-    else if ((info.password.anchor).length < 6) {
+    else if ((info.password).length < 6) {
       setFnmessage("");
       setLnmessage("")
       setCmessage("")

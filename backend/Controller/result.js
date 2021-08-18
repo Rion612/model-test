@@ -102,8 +102,8 @@ exports.getAllResults = (req, res) => {
         })
 }
 exports.getOneResult = (req, res) => {
-    const { id } = req.params;
-    Result.findOne({ modelId: id })
+    const { id , userId } = req.params;
+    Result.findOne({ modelId: id, userId:userId })
         .exec((error, result) => {
             if (error) {
                 return res.status(400).json({

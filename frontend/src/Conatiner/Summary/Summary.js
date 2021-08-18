@@ -35,7 +35,7 @@ const Summary = (props) => {
 
     useEffect(async () => {
         try {
-            const res = await axios.get(`/result/summary/${state.modelId}`);
+            const res = await axios.get(`/result/summary/${state.modelId}/${state.userId}`);
             setResultSummary(res.data.result);
             console.log(res);
         } catch (err) {

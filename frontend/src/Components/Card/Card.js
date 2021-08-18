@@ -41,7 +41,7 @@ const CardComponent = (props) => {
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h2" component="h2" className={classes.typography}>
-                        {(props?.name).toUpperCase()}
+                        {(props?.name)?.toUpperCase()}
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p" className={classes.typography}>
                         {props.text}

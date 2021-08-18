@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import axios from '../../helpers/axios';
 import { Row, Col, Container, Button, Modal } from 'react-bootstrap';
 import { BiTime } from 'react-icons/bi'
-import {  useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 
 
@@ -59,7 +59,7 @@ const Question = (props) => {
     }
     let Interval = useRef();
     const startTimer = () => {
-        const countDowntime = Date.now() + 15000;
+        const countDowntime = Date.now() + 30000;
         Interval = setInterval(() => {
             const now = new Date();
             const distance = countDowntime - now;
@@ -109,14 +109,13 @@ const Question = (props) => {
     const endExam = async () => {
 
         let marks = 0;
-        let wrongAns =0;
+        let wrongAns = 0;
         correctAnswers.forEach((element, index) => {
             if (element === 1) {
                 marks = marks + 1;
             }
-            else if(element === 0 || element === null)
-            {
-                wrongAns = wrongAns +1;
+            else if (element === 0 || element === null) {
+                wrongAns = wrongAns + 1;
 
             }
         })
@@ -125,10 +124,10 @@ const Question = (props) => {
             modelId: props.match.params.modelId,
             courseId: course?._id,
             mark: marks,
-            totalQuestions : questions.questions.length,
-            attemptQuestions : marks + wrongAns,
-            correctAns : marks,
-            wrongAns : wrongAns,
+            totalQuestions: questions.questions.length,
+            attemptQuestions: marks + wrongAns,
+            correctAns: marks,
+            wrongAns: wrongAns,
 
         }
         if (modeltests?.unitId) {
@@ -147,7 +146,7 @@ const Question = (props) => {
     }
     if (examFinish) {
         history.push({
-            pathname:'/model-test/exam/summary',
+            pathname: '/model-test/exam/summary',
             state: examDetails
         })
     }

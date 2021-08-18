@@ -53,6 +53,7 @@ const Result = (props) => {
                             </thead>
                             <tbody>
                                 {
+                                    results.length > 0 ?
                                     results.map((item, index) => {
 
                                         const course = courses?.find(x => x._id === item?.courseId);
@@ -72,7 +73,10 @@ const Result = (props) => {
                                             </tr>
 
                                         )
-                                    })
+                                    }) : 
+                                    <div>
+                                        <p style={{fontSize:'20px',marginTop:'10px'}} className="text-danger">There is no result history</p>
+                                    </div>
                                 }
 
                             </tbody>
